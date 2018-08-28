@@ -119,10 +119,8 @@ module Mortar
     # @return [K8s::Config]
     def build_kubeconfig_from_env
       token = ENV['KUBE_TOKEN']
-      begin
-        token = Base64.strict_decode64(token)
-      rescue ArgumentError # raised if token is not base64 encoded
-      end
+      token = Base64.strict_decode64(token) if base64?(token)
+
       K8s::Config.new(
         clusters: [
           {
@@ -159,6 +157,12 @@ module Mortar
     # @return [Hash]
     def stringify_hash(hash)
       JSON.load(JSON.dump(hash))
+    end
+
+    # Detects if a given string is base64 encoded or not
+    # @return [Boolean]
+    def base64?(str)
+      Base64.encode64(Base64.decode64(str)) == str
     end
   end
 end
