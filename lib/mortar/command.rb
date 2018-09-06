@@ -152,7 +152,7 @@ module Mortar
         current_context: 'mortar'
       )
     rescue ArgumentError
-      signal_usage_error "KUBE_TOKEN env doesn't seem to be valid base64 encoding!"
+      signal_usage_error "KUBE_TOKEN env doesn't seem to be base64 encoded!"
     end
 
     # Stringifies all hash keys
