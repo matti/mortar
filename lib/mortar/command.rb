@@ -153,6 +153,7 @@ module Mortar
       )
     rescue ArgumentError
       puts "KUBE_TOKEN env doesn't seem to be valid base64 encoding!"
+      exit 1
     end
 
     # Stringifies all hash keys

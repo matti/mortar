@@ -31,6 +31,7 @@ RSpec.describe Mortar::Command do
       it 'shows error in token not base64 encoded' do
         ENV['KUBE_TOKEN'] = 'foobar'
         expect(subject).to receive(:puts).with("KUBE_TOKEN env doesn't seem to be valid base64 encoding!")
+        expect(subject).to receive(:exit).with(1)
         subject.build_kubeconfig_from_env
       end
 
