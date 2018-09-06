@@ -160,11 +160,5 @@ module Mortar
     def stringify_hash(hash)
       JSON.load(JSON.dump(hash))
     end
-
-    # Detects if a given string is base64 encoded or not
-    # @return [Boolean]
-    def base64?(str)
-      Base64.encode64(Base64.decode64(str)) == str
-    end
   end
 end
